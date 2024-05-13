@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Callback Handler</title>
+</head>
+<body>
+    <h1>OAuth Callback Response</h1>
+    <p>Status: <span id="status">Waiting for authentication...</span></p>
+    <script>
+        // This script checks if the URL contains OAuth tokens or error messages
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const error = urlParams.get('error');
+
+            if (token) {
+                document.getElementById('status').textContent = 'Successfully authenticated!';
+            } else if (error) {
+                document.getElementById('status').textContent = 'Failed to authenticate: ' + error;
+            } else {
+                document.getElementById('status').textContent = 'No authentication information found.';
+            }
+        };
+    </script>
+</body>
+</html>
